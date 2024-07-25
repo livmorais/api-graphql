@@ -1,0 +1,32 @@
+enum Topic {
+  JAVA
+  PHP
+  JAVASCRIPT
+  CSHARP
+  PYTHON
+}
+
+type Course {
+  id: ID!
+  name: String!
+  description: String
+  topic: Topic!
+  comments: [Comment]
+}
+
+type Comment {
+  id: ID!
+  content: String!
+  courseId: String!
+}
+
+type Query {
+  courseById(id: ID!) : Course
+  coursesByTopic(topic: Topic!): [Course]
+  allCourses: [Course]
+}
+
+type Mutation {
+  createCourse(name: String!, description: String, topic: Topic!): [Course]
+  createComment(content: String!, courseId: String!): [Comment]
+}
